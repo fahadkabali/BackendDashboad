@@ -37,7 +37,7 @@ export default async function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-        <main >
+        <main className="md:px-8 sm:px-4">
           {children}
         </main>
         <Toaster richColors />

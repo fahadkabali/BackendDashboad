@@ -8,10 +8,10 @@ export default async function AuthLayout({
     children: React.ReactNode;
 }>) {
 
-    const supabase = createClient();
-    const { data: authData } = await (await supabase).auth.getUser();
+    const supabase = await createClient();
+    const { data: authData } = await supabase.auth.getUser();
     if(authData?.user) {
-        const { data, error } = await (await supabase)
+        const { data, error } = await supabase
         .from('users')
         .select('*')
         .eq('id', authData.user.id)
