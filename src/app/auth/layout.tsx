@@ -1,6 +1,6 @@
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
-import { ADMIN } from "../constants/constants";
+import { ADMIN } from "../../constants/constants";
 
 export default async function AuthLayout({
     children,
