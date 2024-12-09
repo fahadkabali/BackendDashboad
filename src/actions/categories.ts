@@ -7,7 +7,7 @@ import {
   CreateCategorySchemaServer,
   UpdateCategorySchema,
 } from '@/app/admin/categories/create-category.schema';
-import { createClient } from '@utils/supabase/server';
+import { createClient } from '../utils/supabase/server';
 import { revalidatePath } from 'next/cache';
 
 export const getCategoriesWithProducts =

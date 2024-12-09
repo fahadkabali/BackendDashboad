@@ -1,12 +1,8 @@
-import React from 'react'
-import { getCategoriesWithProducts } from '@/actions/categories'
+import { getCategoriesWithProducts } from '@/actions/categories';
+import CategoryPageComponent from '@/app/admin/categories/page-component';
 
-export const Categories = async () => {
-    const categories = await getCategoriesWithProducts();
-    console.log(categories);
-  return (
-    <div>Categories</div>
-  )
+export default async function Categories() {
+  const categories = await getCategoriesWithProducts();
+
+  return <CategoryPageComponent categories={categories} />;
 }
-
-export default Categories
