@@ -8,3 +8,5 @@ export const Categories = async () => {
     <div>Categories</div>
   )
 }
+
+export default Categories
