@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import { format } from 'date-fns';
 import { useState } from 'react';
 import { MoreHorizontal } from 'lucide-react';
@@ -31,23 +30,28 @@ export const CategoryTableRow = ({
   category,
   setCurrentCategory,
   setIsCreateCategoryModalOpen,
+  deleteCategoryHandler,
 }: {
   category: CategoryWithProducts;
   setCurrentCategory: (category: CreateCategorySchema | null) => void;
   setIsCreateCategoryModalOpen: (isOpen: boolean) => void;
+  deleteCategoryHandler: (id: number) => Promise<void>;
 }) => {
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
 
   const handleEditClick = (category: CreateCategorySchema) => {
     setCurrentCategory({
       name: category.name,
+      // @ts-ignore
       image: new File([], ''),
+      intent: 'update',
+      slug: category.slug,
     });
     setIsCreateCategoryModalOpen(true);
   };
 
-  const handleDelete = () => {
-    console.log(`Deleting category with ID: ${category.id}`);
+  const handleDelete = async () => {
+    await deleteCategoryHandler(category.id);
     setIsDeleteDialogOpen(false);
   };
 
@@ -83,27 +87,25 @@ export const CategoryTableRow = ({
                 <h2>Products</h2>
                 <ScrollArea className='h-[400px] rounded-md p-4'>
                   {category.products.map(product => (
-                    <Link key={product.id} href={`/products/${product.id}`}>
-                      <Card className='cursor-pointer'>
-                        <div className='grid grid-cols-[100px,1fr] items-center gap-4'>
-                          <Image
-                            alt='Product image'
-                            className='aspect-square rounded-md object-cover'
-                            height='100'
-                            src={product.heroImage}
-                            width='100'
-                          />
-                          <div className='flex flex-col space-y-1'>
-                            <h3 className='font-medium leading-none'>
-                              {product.title}
-                            </h3>
-                            <p className='text-sm text-muted-foreground'>
-                              {product.maxQuantity} in stock
-                            </p>
-                          </div>
+                    <Card key={product.id} className='cursor-pointer'>
+                      <div className='grid grid-cols-[100px,1fr] items-center gap-4'>
+                        <Image
+                          alt='Product image'
+                          className='aspect-square rounded-md object-cover'
+                          height='100'
+                          src={product.heroImage}
+                          width='100'
+                        />
+                        <div className='flex flex-col space-y-1'>
+                          <h3 className='font-medium leading-none'>
+                            {product.title}
+                          </h3>
+                          <p className='text-sm text-muted-foreground'>
+                            {product.maxQuantity} in stock
+                          </p>
                         </div>
-                      </Card>
-                    </Link>
+                      </div>
+                    </Card>
                   ))}
                 </ScrollArea>
               </DialogContent>
@@ -122,7 +124,14 @@ export const CategoryTableRow = ({
             </DropdownMenuTrigger>
             <DropdownMenuContent align='end' className='w-[160px]'>
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
-              <DropdownMenuItem onClick={() => handleEditClick(category)}>
+              <DropdownMenuItem
+                onClick={() =>
+                  handleEditClick({
+                    ...category,
+                    intent: 'update',
+                  })
+                }
+              >
                 Edit
               </DropdownMenuItem>
               <DropdownMenuItem onClick={() => setIsDeleteDialogOpen(true)}>

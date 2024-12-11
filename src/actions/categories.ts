@@ -12,7 +12,7 @@ import { revalidatePath } from 'next/cache';
 
 export const getCategoriesWithProducts =
   async (): Promise<CategoriesWithProductsResponse> => {
-    const supabase = createClient();
+    const supabase = await createClient();
     const { data, error } = await supabase
       .from('category')
       .select('* , products:product(*)')
@@ -24,7 +24,7 @@ export const getCategoriesWithProducts =
   };
 
 export const imageUploadHandler = async (formData: FormData) => {
-  const supabase = createClient();
+  const supabase = await createClient();
   if (!formData) return;
 
   const fileEntry = formData.get('file');
@@ -61,7 +61,7 @@ export const createCategory = async ({
   imageUrl,
   name,
 }: CreateCategorySchemaServer) => {
-  const supabase = createClient();
+  const supabase = await createClient();
   const slug = slugify(name, { lower: true });
 
   const { data, error } = await supabase.from('category').insert({
@@ -82,7 +82,7 @@ export const updateCategory = async ({
   name,
   slug,
 }: UpdateCategorySchema) => {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data, error } = await supabase
     .from('category')
     .update({ name, imageUrl })
@@ -96,7 +96,7 @@ export const updateCategory = async ({
 };
 
 export const deleteCategory = async (id: number) => {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { error } = await supabase.from('category').delete().match({ id });
 
   if (error) throw new Error(`Error deleting category: ${error.message}`);
