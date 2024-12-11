@@ -8,7 +8,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 
-import { ProductsWithCategoriesResponse } from '@/app/admin/products/products.types';
+import { ProductsWithCategoriesResponse } from './products.types';
 import { Button } from '@/components/ui/button';
 import {
   Table,
@@ -28,7 +28,7 @@ import { Category } from '@/app/admin/categories/categories.types';
 import {
   createOrUpdateProductSchema,
   CreateOrUpdateProductSchema,
-} from '@/app/admin/products/schema';
+} from './schema';
 import { imageUploadHandler } from '@/actions/categories';
 import {
   createProduct,
@@ -36,7 +36,7 @@ import {
   updateProduct,
 } from '@/actions/products';
 import { ProductForm } from '@/app/admin/products/product-form';
-import { ProductTableRow } from '@/app/admin/products/product-table-row';
+import { ProductTableRow } from './product-table-row';
 
 type Props = {
   categories: Category[];
