@@ -105,7 +105,7 @@ export const deleteCategory = async (id: number) => {
 };
 
 export const getCategoryData = async () => {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data, error } = await supabase
     .from('category')
     .select('name, products:product(id)');

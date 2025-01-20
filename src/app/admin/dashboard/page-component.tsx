@@ -90,7 +90,7 @@ const PageComponent = ({
                   outerRadius={80}
                   fill='#8884d8'
                   labelLine={false}
-                  label={({ name, percent }) =>
+                  label={({ name, percent = 0 }) =>
                     `${name} ${(percent * 100).toFixed(0)}%`
                   }
                 >
