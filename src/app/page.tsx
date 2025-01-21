@@ -207,7 +207,7 @@ export default function Home() {
                   <CardContent className='p-6'>
                     <div className='flex items-center mb-4'>
                       <Image
-                        src={`https://images.unsplash.com/photo-1543610892-0b1f7e6d8ac1?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YXZhdGFyfGVufDB8fDB8fHww`}
+                        src='/hero.jpg'
                         alt={testimonial.name}
                         className='w-12 h-12 rounded-full mr-4 object-cover'
                         width={48}

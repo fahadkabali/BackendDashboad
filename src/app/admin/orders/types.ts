@@ -1,7 +1,7 @@
 import { createClient } from '@/utils/supabase/server';
 import { QueryData } from '@supabase/supabase-js';
 
-const supabase = createClient();
+const supabase = await createClient();
 
 const ordersWithProductsQuery = supabase
   .from('order')

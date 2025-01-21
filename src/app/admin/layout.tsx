@@ -1,3 +1,4 @@
+"use server"
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { RenderMounted } from "@/components/render-mounted";
