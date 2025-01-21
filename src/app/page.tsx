@@ -89,8 +89,8 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-500 to-white">
-      <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
+    <div className="min-h-screen">
+      <header className="sticky top-0 z-50  backdrop-blur-md border-b border-gray-600">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <h1 className="text-2xl font-bold bg-gradient-to-r from-[#1BC464] to-green-600 bg-clip-text text-transparent">
             GadgetApp
@@ -319,3 +319,5 @@ export default function Home() {
     </div>
   );
 }
+
+
