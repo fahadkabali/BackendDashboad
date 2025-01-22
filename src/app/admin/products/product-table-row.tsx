@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, Suspense } from 'react';
 import { Pencil, Trash2 } from 'lucide-react';
 import Image from 'next/image';
 
@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { TableRow, TableCell } from '@/components/ui/table';
 import { ProductWithCategory } from '@/app/admin/products/products.types';
 import { CreateOrUpdateProductSchema } from '@/app/admin/products/schema';
+import { LoadingSection } from '@/components/loading-section';
 
 type Props = {
   product: ProductWithCategory;
@@ -38,6 +39,7 @@ export const ProductTableRow = ({
 
   return (
     <TableRow key={product.id}>
+      <Suspense fallback={<LoadingSection message="Loading orders..." />}>
       <TableCell>{product.title}</TableCell>
       <TableCell>{product.category.name}</TableCell>
       <TableCell>{product.price}</TableCell>
@@ -104,6 +106,7 @@ export const ProductTableRow = ({
           />
         </Button>
       </TableCell>
+      </Suspense>
     </TableRow>
   );
 };

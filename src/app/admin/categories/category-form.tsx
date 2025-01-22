@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 import { SubmitHandler, UseFormReturn } from 'react-hook-form';
 
 import { Input } from '@/components/ui/input';
@@ -13,6 +13,8 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { CreateCategorySchema } from '@/app/admin/categories/create-category.schema';
+import { LoadingSection } from '@/components/loading-section';
+
 
 type CategoryFormProps = {
   form: UseFormReturn<CreateCategorySchema>;
@@ -37,6 +39,7 @@ export const CategoryForm = ({
 
   return (
     <Form {...form}>
+      <Suspense fallback={<LoadingSection message="Loading orders..." />}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <FormField
           control={form.control}
@@ -78,6 +81,7 @@ export const CategoryForm = ({
           Submit
         </Button>
       </form>
+      </Suspense>
     </Form>
   );
 };

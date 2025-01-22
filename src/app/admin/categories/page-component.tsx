@@ -1,6 +1,6 @@
 'use client';
 
-import { FC, useState } from 'react';
+import { FC, Suspense, useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { PlusCircle } from 'lucide-react';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -44,6 +44,8 @@ import {
 } from '@/actions/categories';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
+import { LoadingSection } from '@/components/loading-section';
+
 
 type Props = {
   categories: CategoriesWithProductsResponse;
@@ -127,6 +129,7 @@ const CategoriesPageComponent: FC<Props> = ({ categories }) => {
     <main className='grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8'>
       <div className='flex items-center my-10'>
         <div className='ml-auto flex items-center gap-2'>
+        <Suspense fallback={<LoadingSection message="Loading orders..." />}>
           <Dialog
             open={isCreateCategoryModalOpen}
             onOpenChange={() =>
@@ -159,6 +162,7 @@ const CategoriesPageComponent: FC<Props> = ({ categories }) => {
               />
             </DialogContent>
           </Dialog>
+        </Suspense>
         </div>
       </div>
 
@@ -168,6 +172,7 @@ const CategoriesPageComponent: FC<Props> = ({ categories }) => {
         </CardHeader>
 
         <CardContent>
+        <Suspense fallback={<LoadingSection message="Loading orders..." />}>
           <Table className='min-w-[600px]'>
             <TableHeader>
               <TableRow>
@@ -194,6 +199,7 @@ const CategoriesPageComponent: FC<Props> = ({ categories }) => {
               ))}
             </TableBody>
           </Table>
+        </Suspense>
         </CardContent>
       </Card>
     </main>

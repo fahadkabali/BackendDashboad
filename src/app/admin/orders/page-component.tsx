@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import { format } from 'date-fns';
 import Image from 'next/image';
 
@@ -28,6 +28,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
+import { LoadingSection } from '@/components/loading-section';
+
 
 import { OrdersWithProducts } from '@/app/admin/orders/types';
 import { updateOrderStatus } from '@/actions/orders';
@@ -88,6 +90,7 @@ export default function PageComponent({ ordersWithProducts }: Props) {
           </TableRow>
         </TableHeader>
         <TableBody>
+          <Suspense fallback = {<LoadingSection message = "Loading orders..."/>}>
           {ordersWithProducts.map(order => (
             <TableRow key={order.id}>
               <TableCell>{order.id}</TableCell>
@@ -171,6 +174,7 @@ export default function PageComponent({ ordersWithProducts }: Props) {
               </TableCell>
             </TableRow>
           ))}
+          </Suspense>
         </TableBody>
       </Table>
     </div>

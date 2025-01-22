@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useEffect } from 'react';
+import { Dispatch, SetStateAction, Suspense, useEffect } from 'react';
 import { UseFormReturn } from 'react-hook-form';
 
 import {
@@ -27,6 +27,8 @@ import { CreateOrUpdateProductSchema } from '@/app/admin/products/schema';
 import { Input } from '@/components/ui/input';
 import { Category } from '@/app/admin/categories/categories.types';
 import { Button } from '@/components/ui/button';
+import { LoadingSection } from '@/components/loading-section';
+
 
 type Props = {
   form: UseFormReturn<CreateOrUpdateProductSchema>;
@@ -68,6 +70,7 @@ export const ProductForm = ({
         <DialogHeader>
           <DialogTitle>Add New Product</DialogTitle>
         </DialogHeader>
+        <Suspense fallback={<LoadingSection message="Loading orders..." />}>
         <div
           className='max-h-[calc(100svh-200px)] overflow-y-auto'
           style={{
@@ -218,6 +221,7 @@ export const ProductForm = ({
             </form>
           </Form>
         </div>
+        </Suspense>
       </DialogContent>
     </Dialog>
   );

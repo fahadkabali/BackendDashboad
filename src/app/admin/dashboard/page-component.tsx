@@ -22,6 +22,9 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import { LoadingSection } from '@/components/loading-section';
+import { Suspense } from 'react';
+
 
 type MonthlyOrderData = {
   name: string;
@@ -61,16 +64,18 @@ const PageComponent = ({
             <CardTitle>Orders Over Time</CardTitle>
           </CardHeader>
           <CardContent>
-            <ResponsiveContainer width='100%' height={300}>
-              <BarChart data={monthlyOrders}>
-                <CartesianGrid strokeDasharray='3 3' />
-                <XAxis dataKey='name' />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Bar dataKey='orders' fill='#8884d8' />
-              </BarChart>
-            </ResponsiveContainer>
+            <Suspense fallback={<LoadingSection message="Loading..." />}>
+              <ResponsiveContainer width='100%' height={300}>
+                <BarChart data={monthlyOrders}>
+                  <CartesianGrid strokeDasharray='3 3' />
+                  <XAxis dataKey='name' />
+                  <YAxis />
+                  <Tooltip />
+                  <Legend />
+                  <Bar dataKey='orders' fill='#8884d8' />
+                </BarChart>
+              </ResponsiveContainer>
+            </Suspense>
           </CardContent>
         </Card>
 
@@ -80,6 +85,7 @@ const PageComponent = ({
             <CardTitle>Product Distribution</CardTitle>
           </CardHeader>
           <CardContent>
+          <Suspense fallback={<LoadingSection message="Loading..." />}>
             <ResponsiveContainer width='100%' height={300}>
               <PieChart>
                 <Pie
@@ -104,6 +110,7 @@ const PageComponent = ({
                 <Tooltip />
               </PieChart>
             </ResponsiveContainer>
+          </Suspense>
           </CardContent>
         </Card>
 
@@ -113,6 +120,7 @@ const PageComponent = ({
             <CardTitle>Products per Category</CardTitle>
           </CardHeader>
           <CardContent>
+          <Suspense fallback={<LoadingSection message="Loading..." />}>
             <ResponsiveContainer width='100%' height={300}>
               <BarChart data={categoryData}>
                 <CartesianGrid strokeDasharray='3 3' />
@@ -123,6 +131,7 @@ const PageComponent = ({
                 <Bar dataKey='products' fill='#82ca9d' />
               </BarChart>
             </ResponsiveContainer>
+          </Suspense>
           </CardContent>
         </Card>
 
@@ -132,6 +141,7 @@ const PageComponent = ({
             <CardTitle>Latest Users</CardTitle>
           </CardHeader>
           <CardContent>
+          <Suspense fallback={<LoadingSection message="Loading..." />}>
             <Table>
               <TableHeader>
                 <TableRow>
@@ -148,6 +158,7 @@ const PageComponent = ({
                 ))}
               </TableBody>
             </Table>
+          </Suspense>
           </CardContent>
         </Card>
       </div>

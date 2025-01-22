@@ -1,12 +1,13 @@
 'use client';
 
-import { FC, useState } from 'react';
+import { FC, useState, Suspense } from 'react';
 import { PlusIcon } from 'lucide-react';
 import { v4 as uuid } from 'uuid';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
+import { LoadingSection } from '@/components/loading-section';
 
 import { ProductsWithCategoriesResponse } from './products.types';
 import { Button } from '@/components/ui/button';
@@ -196,6 +197,7 @@ export const ProductPageComponent: FC<Props> = ({
               <TableHead>Actions</TableHead>
             </TableRow>
           </TableHeader>
+          <Suspense fallback={<LoadingSection message="Loading..." />}>
           <TableBody>
             {productsWithCategories.map(product => (
               <ProductTableRow
@@ -207,17 +209,20 @@ export const ProductPageComponent: FC<Props> = ({
               />
             ))}
           </TableBody>
+          </Suspense>
         </Table>
 
         {/* Product Modal */}
-        <ProductForm
-          form={form}
-          onSubmit={productCreateUpdateHandler}
-          categories={categories}
-          isProductModalOpen={isProductModalOpen}
-          setIsProductModalOpen={setIsProductModalOpen}
-          defaultValues={currentProduct}
-        />
+        <Suspense fallback={<LoadingSection message="Loading..." />}>
+          <ProductForm
+            form={form}
+            onSubmit={productCreateUpdateHandler}
+            categories={categories}
+            isProductModalOpen={isProductModalOpen}
+            setIsProductModalOpen={setIsProductModalOpen}
+            defaultValues={currentProduct}
+          />
+        </Suspense>
 
         {/* Delete Product Modal */}
         <Dialog open={isDeleteModalOpen} onOpenChange={setIsDeleteModalOpen}>

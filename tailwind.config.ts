@@ -9,6 +9,15 @@ export default {
   ],
   theme: {
   	extend: {
+		keyframes: {
+			'border-flow': {
+			  '0%, 100%': { backgroundPosition: '0% 50%' },
+			  '50%': { backgroundPosition: '100% 50%' },
+			},
+		  },
+		  animation: {
+			'border-flow': 'border-flow 4s ease infinite',
+		  },
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
