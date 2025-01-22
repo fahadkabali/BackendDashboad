@@ -5,9 +5,9 @@ import { RenderMounted } from "@/components/render-mounted";
 import { ADMIN } from "@/constants/constants";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
-import { revalidatePath } from "next/cache";
+// import { revalidatePath } from "next/cache";
 
-revalidatePath('/', 'layout');
+// revalidatePath('/', 'layout');
 
 export default async function AdminLayout({
   children,

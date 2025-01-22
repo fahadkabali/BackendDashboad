@@ -1,9 +1,7 @@
 "use server"
 import { createClient } from "@/utils/supabase/server"
-// import { getLatestUsers } from '@/actions/auth';
-
-const supabase = await createClient();
 export const authenticate = async (email: string, password: string) => {
+    const supabase = await createClient()
     try{
 
 
@@ -21,6 +19,7 @@ export const authenticate = async (email: string, password: string) => {
 }
 
 export const getLatestUsers = async () => {
+    const supabase = await createClient()
     const {data,error} = await supabase
     .from('users')
     .select('id,email,created_at')

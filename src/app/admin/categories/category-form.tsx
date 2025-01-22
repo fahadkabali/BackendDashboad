@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { SubmitHandler } from 'react-hook-form';
+import { SubmitHandler, UseFormReturn } from 'react-hook-form';
 
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -14,15 +14,17 @@ import {
 } from '@/components/ui/form';
 import { CreateCategorySchema } from '@/app/admin/categories/create-category.schema';
 
+type CategoryFormProps = {
+  form: UseFormReturn<CreateCategorySchema>;
+  onSubmit: SubmitHandler<CreateCategorySchema>;
+  defaultValues: CreateCategorySchema | null;
+};
+
 export const CategoryForm = ({
   form,
   onSubmit,
   defaultValues,
-}: {
-  form: any;
-  onSubmit: SubmitHandler<CreateCategorySchema>;
-  defaultValues: CreateCategorySchema | null;
-}) => {
+}: CategoryFormProps) => {
   const isSubmitting = form.formState.isSubmitting;
 
   useEffect(() => {
@@ -35,15 +37,15 @@ export const CategoryForm = ({
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <FormField
           control={form.control}
-          name='name'
+          name="name"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Name</FormLabel>
               <FormControl>
-                <Input disabled={isSubmitting} placeholder='Name' {...field} />
+                <Input disabled={isSubmitting} placeholder="Name" {...field} />
               </FormControl>
               <FormDescription>Category Name</FormDescription>
               <FormMessage />
@@ -52,14 +54,14 @@ export const CategoryForm = ({
         />
         <FormField
           control={form.control}
-          name='image'
+          name="image"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Image</FormLabel>
               <FormControl>
                 <Input
-                  type='file'
-                  accept='image/*'
+                  type="file"
+                  accept="image/*"
                   {...form.register('image')}
                   onChange={event => {
                     field.onChange(event.target.files?.[0]);
@@ -72,7 +74,7 @@ export const CategoryForm = ({
             </FormItem>
           )}
         />
-        <Button disabled={isSubmitting} type='submit' variant='outline'>
+        <Button disabled={isSubmitting} type="submit" variant="outline">
           Submit
         </Button>
       </form>

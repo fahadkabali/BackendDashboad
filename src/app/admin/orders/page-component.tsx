@@ -45,7 +45,7 @@ type OrderedProducts = {
     created_at: string;
     heroImage: string;
     id: number;
-    imagesUrl: string[];
+    imageUrl: string[];
     maxQuantity: number;
     price: number;
     slug: string;

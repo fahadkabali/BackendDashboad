@@ -1,5 +1,4 @@
 'use server';
-
 import { createClient } from '@/utils/supabase/server';
 import { revalidatePath } from 'next/cache';
 import { sendNotification } from './notifications';
@@ -10,9 +9,7 @@ export const getOrdersWithProducts = async () => {
     .from('order')
     .select('*, order_items:order_item(*, product(*)), user(*)')
     .order('created_at', { ascending: false });
-
   if (error) throw new Error(error.message);
-
   return data;
 };
 
@@ -22,17 +19,17 @@ export const updateOrderStatus = async (orderId: number, status: string) => {
     .from('order')
     .update({ status })
     .eq('id', orderId);
-
   if (error) throw new Error(error.message);
 
   const {
     data: { session },
   } = await supabase.auth.getSession();
 
-  const userId = session?.user.id!;
+  if (!session?.user?.id) {
+    throw new Error('No authenticated user found');
+  }
 
-  await sendNotification(userId, status + ' 🚀');
-
+  await sendNotification(session.user.id, status + ' 🚀');
   revalidatePath('/admin/orders');
 };
 
@@ -41,7 +38,6 @@ export const getMonthlyOrders = async () => {
   const { data, error } = await supabase
     .from('order')
     .select('created_at');
-
   if (error) throw new Error(error.message);
 
   const monthNames = [
@@ -63,11 +59,9 @@ export const getMonthlyOrders = async () => {
     (acc: Record<string, number>, order: { created_at: string }) => {
       const date = new Date(order.created_at);
       const month = monthNames[date.getUTCMonth()]; // Get the month name
-
       // Increment the count for this month
       if (!acc[month]) acc[month] = 0;
       acc[month]++;
-
       return acc;
     },
     {}

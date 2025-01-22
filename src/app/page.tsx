@@ -59,14 +59,14 @@ const features = [
 
 const testimonials = [
   {
-    name: 'John Doe',
+    name: 'User 1',
     role: 'Tech Enthusiast',
-    comment: "GadgetApp has revolutionized how I shop for tech. It's so convenient!",
+    comment: "My Online Store has revolutionized how I shop for tech. It's so convenient!",
   },
   {
-    name: 'Jane Doe',
+    name: 'User 2',
     role: 'Digital Creator',
-    comment: "The exclusive deals on this app are unbeatable. I've saved so much!",
+    comment: "My Online deals on this app are unbeatable. I've saved so much!",
   },
 ];
 
@@ -136,7 +136,7 @@ export default function Home() {
                   🚀 Now Available
                 </Badge>
                 <h2 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-[#1BC464] to-green-600 bg-clip-text text-transparent">
-                  Discover Gadgets on the Go
+                  Discover MyOnline Store on the Go
                 </h2>
               </MotionWrapper>
               <MotionWrapper delay={0.2}>
@@ -191,7 +191,7 @@ export default function Home() {
             <Badge className="mb-4 bg-green-100 text-[#1BC464] hover:bg-green-200">
               Features
             </Badge>
-            <h3 className="text-4xl font-bold mb-4">Why Choose GadgetApp?</h3>
+            <h3 className="text-4xl font-bold mb-4">Why Choose My Online Store?</h3>
             <p className="text-xl text-gray-600">Experience shopping like never before</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -223,7 +223,7 @@ export default function Home() {
                     Transform Your Shopping Experience
                   </h3>
                   <p className="text-xl mb-8 text-green-100">
-                    Download GadgetApp today and join thousands of happy shoppers.
+                    Download My Online Store today and join thousands of happy shoppers.
                   </p>
                   <div className="flex flex-wrap justify-center gap-4">
                     <Button size="lg" className="bg-white text-[#1BC464] hover:bg-green-100">
@@ -300,7 +300,7 @@ export default function Home() {
               Ready to Transform Your Gadget Shopping?
             </h3>
             <p className="text-xl text-gray-600 mb-8">
-              Download GadgetApp now and get 20% off your first in-app purchase!
+              Download My Online Store now and get 20% off your first in-app purchase!
             </p>
             <Button size="lg" className="bg-[#1BC464] hover:bg-[#1bc464d7]">
               Get Started <ChevronRight className="ml-2 h-4 w-4" />
@@ -312,7 +312,7 @@ export default function Home() {
       <footer className="bg-gradient-to-r from-[#1BC464] to-green-600 text-white py-8">
         <div className="container mx-auto px-4 text-center">
           <p className="text-green-100">
-            © {new Date().getFullYear()} GadgetApp. All rights reserved.
+            © {new Date().getFullYear()} My Online Store. All rights reserved.
           </p>
         </div>
       </footer>
