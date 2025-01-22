@@ -93,16 +93,16 @@ export default function Home() {
       <header className="sticky top-0 z-50  backdrop-blur-md border-b border-gray-600">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <h1 className="text-2xl font-bold bg-gradient-to-r from-[#1BC464] to-green-600 bg-clip-text text-transparent">
-            GadgetApp
+            My Online Store
           </h1>
           <nav className="hidden md:flex space-x-8">
             <Link href="#features" className="hover:text-[#1BC464] transition-colors">Features</Link>
             <Link href="#testimonials" className="hover:text-[#1BC464] transition-colors">Testimonials</Link>
             <Link href="#download" className="hover:text-[#1BC464] transition-colors">Download</Link>
           </nav>
-          <Button className="bg-[#1BC464] hover:bg-[#1bc464d7] hidden md:flex">
+          <Link href="/admin/dashboard" className="bg-[#1BC464] hover:bg-[#1bc464d7] hidden md:flex p-4">
             Get Started
-          </Button>
+          </Link>
           <button 
             className="md:hidden"
             onClick={() => setIsMenuOpen(!isMenuOpen)}

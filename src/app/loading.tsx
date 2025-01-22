@@ -6,7 +6,7 @@ import { Card } from '@/components/ui/card';
 
 export default function Loading() {
   return (
-    <div className="min-h-screen w-full bg-gray-50/50 flex items-center justify-center p-4">
+    <div className="min-h-screen w-full flex items-center justify-center p-4">
       <Card className="max-w-md w-full p-8 relative overflow-hidden">
         {/* Animated gradient border */}
         <div className="absolute inset-0 border-2 border-transparent animate-border-flow bg-gradient-to-r from-blue-500 via-purple-500 to-blue-500 [mask:linear-gradient(#fff_0_0)_padding-box,linear-gradient(#fff_0_0)]" />

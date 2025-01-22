@@ -8,7 +8,7 @@ import { Card } from '@/components/ui/card';
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen w-full bg-gray-50/50 flex items-center justify-center p-4">
+    <div className="min-h-screen w-full  flex items-center justify-center p-4">
       <Card className="max-w-2xl w-full p-8 relative overflow-hidden">
         {/* Decorative background elements */}
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-500 via-orange-500 to-red-500" />
@@ -29,7 +29,7 @@ export default function NotFound() {
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2, duration: 0.5 }}
           >
-            <h1 className="text-4xl font-bold text-gray-900 mb-2">Page Not Found</h1>
+            <h1 className="text-4xl font-bold text-gray-200 mb-2">Page Not Found</h1>
             <p className="text-gray-500 mb-8">
               We couldn&apos;t find the page you&apos;re looking for. It might have been moved, deleted,
               or never existed.
